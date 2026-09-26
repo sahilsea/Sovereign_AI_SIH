@@ -1,0 +1,25 @@
+{
+  "_comment": [
+    "Local open-weight model registry. The router (agents/registry.py) picks, for each task,",
+    "the highest-priority model below that is ACTUALLY INSTALLED on the local Ollama server.",
+    "To add a new model: `ollama pull <id>`, then add an entry here. No code change needed.",
+    "Tasks: document (grounded Q&A + summaries), planning (agent tool-use loop), code,",
+    "vision (images, scanned pages, handwriting, drawings), embedding (semantic search).",
+    "An env var pin (OLLAMA_MODEL / OLLAMA_CODE_MODEL / OLLAMA_VISION_MODEL / OLLAMA_PLANNER_MODEL)",
+    "wins over this list when that model is installed."
+  ],
+  "models": [
+    {"id": "gpt-oss:120b",            "family": "gpt-oss",  "params": "120B", "tasks": ["document", "planning", "code"], "priority": 100, "note": "Datacenter GPU class (80GB+)"},
+    {"id": "gpt-oss:20b",             "family": "gpt-oss",  "params": "20B",  "tasks": ["document", "planning", "code"], "priority": 90,  "note": "Single 16-24GB GPU"},
+    {"id": "qwen2.5-coder:14b",       "family": "qwen",     "params": "14B",  "tasks": ["code"],                          "priority": 85},
+    {"id": "qwen2.5-coder:7b",        "family": "qwen",     "params": "7B",   "tasks": ["code"],                          "priority": 80},
+    {"id": "qwen2.5-coder:3b",        "family": "qwen",     "params": "3B",   "tasks": ["code"],                          "priority": 70},
+    {"id": "qwen2.5vl:7b",            "family": "qwen",     "params": "7B",   "tasks": ["vision"],                        "priority": 80},
+    {"id": "granite3.2-vision:latest","family": "granite",  "params": "2B",   "tasks": ["vision"],                        "priority": 70,  "note": "Tuned for document/chart understanding"},
+    {"id": "qwen3.5:2b-q4_K_M",       "family": "qwen",     "params": "2B",   "tasks": ["vision"],                        "priority": 60},
+    {"id": "gemma3:4b",               "family": "gemma",    "params": "4B",   "tasks": ["document", "planning", "vision"],"priority": 60},
+    {"id": "granite4.1:3b",           "family": "granite",  "params": "3B",   "tasks": ["document", "planning"],          "priority": 55},
+    {"id": "llama3.2:latest",         "family": "llama",    "params": "3B",   "tasks": ["document", "planning"],          "priority": 40},
+    {"id": "nomic-embed-text:latest", "family": "nomic",    "params": "137M", "tasks": ["embedding"],                     "priority": 50}
+  ]
+}

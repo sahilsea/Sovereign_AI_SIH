@@ -1,0 +1,33 @@
+# Environment / secrets
+.env
+.env.local
+*.env
+!.env.example
+
+# Runtime data
+severance.db
+*.db
+*.sqlite
+*.sqlite3
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+
+# OS
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+
+# Agent workspace (per-user generated files)
+workspace/
+network_violations.log
+
+# Frontend dependencies (npm ci restores them)
+ui-react/node_modules/
